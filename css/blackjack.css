@@ -1,0 +1,6 @@
+
+.bj-zone { text-align: center; margin: 1rem 0; }
+.bj-zone h3 { margin: 0.2rem 0 0.6rem; }
+.bj-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+.bj-actions .btn { min-width: 120px; }
+.dealer-wins, .player-wins { color: var(--yallo-bright); font-weight: 700; }

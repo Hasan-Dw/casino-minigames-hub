@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Premium virtual casino — Blackjack, Roulette and Slots with fictional virtual chips. No real money." />
+  <title>Luck Kingdom — Virtual Casino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/casino-theme.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/blackjack.css" />
+  <link rel="stylesheet" href="css/roulette.css" />
+  <link rel="stylesheet" href="css/slots.css" />
+  <link rel="stylesheet" href="css/baccarat.css" />
+  <link rel="stylesheet" href="css/gate.css" />
+</head>
+
+<body data-animations="on" data-reduced-motion="off">
+
+  <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-card">
+      <div class="brand-mark gate-mark" aria-hidden="true">♛</div>
+      <h1 id="gate-title">THE ROYAL DEALER</h1>
+      <p class="gate-sub">MEMBERS' ENTRANCE · VIRTUAL CHIPS · 18+</p>
+      <form id="gate-form" novalidate>
+        <div class="field"><label for="gate-username">Username</label><input id="gate-username" type="text"
+            maxlength="20" autocomplete="nickname" placeholder="e.g. Hasan" /></div>
+        <div class="field"><label for="gate-age">Age</label><input id="gate-age" type="number" min="1" max="130"
+            step="1" inputmode="numeric" placeholder="18" /></div>
+        <p class="gate-error" id="gate-error" role="alert" hidden></p>
+        <button class="btn btn-yallo gate-enter" id="gate-enter" type="submit">ENTER THE CASINO</button>
+      </form>
+      <div id="gate-denied" class="gate-denied" hidden>
+        <div class="gate-milk" aria-hidden="true">🥛</div>
+        <p>Go drink your warm milk and get to bed before you miss your bedtime.</p>
+        <button class="btn btn-ghost" id="gate-back" type="button">BACK</button>
+      </div>
+      <div id="gate-welcome" class="gate-welcome" hidden>
+        <p id="gate-welcome-text">Welcome.</p>
+      </div>
+      <p class="gate-note">Fictional game · virtual chips only · no real money</p>
+    </div>
+  </div>
+
+  <div id="intro-cinema" class="cinema cinema-hidden" hidden>
+    <video id="intro-video" class="cinema-video" playsinline preload="none" aria-label="yalloen Velvet cinematic intro">
+      <source src="assets/intro-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="yalloen Velvet casino lobby">
+      <span class="brand-mark" aria-hidden="true">♛</span>
+      <span><span class="brand-name">THE ROYAL DEALER</span><span class="brand-sub">VIRTUAL CASINO</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Casino navigation">
+      <a href="#/" data-nav="lobby">Lobby</a>
+      <a href="#/blackjack" data-nav="blackjack">Blackjack</a>
+      <a href="#/roulette" data-nav="roulette">Roulette</a>
+      <a href="#/slots" data-nav="slots">Slots</a>
+      <a href="#/baccarat" data-nav="baccarat">Baccarat</a>
+      <a href="#/history" data-nav="history">History</a>
+      <a href="#/statistics" data-nav="statistics">Stats</a>
+      <a href="#/settings" data-nav="settings">Settings</a>
+    </nav>
+    <div class="balance-pill" title="Your fictional chip balance"><span class="coin" aria-hidden="true">◉</span><span
+        id="nav-balance" data-balance>—</span></div>
+    <div class="user-chip" id="user-chip" hidden>Welcome, <strong id="user-name">Guest</strong></div>
+  </header>
+
+  <main class="layout">
+    <h2 id="page-title" class="sr-only" style="position:absolute;left:-9999px">Casino Lobby</h2>
+
+
+    <section class="page" data-page="lobby" aria-label="Casino lobby">
+      <div class="hero">
+        <h1>THE ROYAL DEALER</h1>
+        <div class="ornament" aria-hidden="true"><span>◆ ◆ ◆</span></div>
+        <p>A premium casino. All wagers use <strong>Virtual Chips</strong> — no real money, ever.</p>
+        <p style="margin-top:.6rem">BALANCE: <strong id="lobby-balance" data-balance>—</strong></p>
+      </div>
+      <div class="game-grid">
+        <article class="game-card">
+          <h3>♠ BLACKJACK</h3>
+          <p>Beat the dealer to 21. Naturals pay 3:2. Double down available.</p><a class="go" href="#/blackjack">Play
+            now →</a>
+        </article>
+        <article class="game-card">
+          <h3>◉ ROULETTE</h3>
+          <p>European wheel. Straights, colors, dozens and columns up to 35:1.</p><a class="go" href="#/roulette">Play
+            now →</a>
+        </article>
+        <article class="game-card">
+          <h3>✦ SLOT MACHINE</h3>
+          <p>Three reels, staggered stops. Triple 7s pay 100×.</p><a class="go" href="#/slots">Play now →</a>
+        </article>
+        <article class="game-card">
+          <h3>♦ BACCARAT</h3>
+          <p>Punto-banco table. Player 1:1, Banker 0.95:1, Tie 8:1.</p><a class="go" href="#/baccarat">Play now →</a>
+        </article>
+      </div>
+      <div class="panel">
+        <h3>House rules</h3>
+        <p style="color:var(--muted)">Starting stack <strong>10,000 Virtual Chips</strong> · Min bet 10 · Max bet 5,000
+          · Dealer stands on all 17s · Balance, history and statistics persist in your browser.</p>
+      </div>
+    </section>
+
+    <section class="page" data-page="blackjack" aria-label="Blackjack table">
+      <div class="hud">
+        <div class="hud-box">
+          <div class="label">Balance</div>
+          <div class="value" data-balance>—</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">Bet</div>
+          <div class="value" data-bet="blackjack">0 CHIPS</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">State</div>
+          <div class="value" id="bj-state" style="font-size:.95rem">BETTING</div>
+        </div>
+      </div>
+      <div class="felt-table" id="bj-table">
+        <div class="table-label">BLACKJACK PAYS 3 TO 2 · DEALER STANDS ON 17</div>
+        <div class="bj-zone">
+          <h3>DEALER <span id="bj-dealer-score" class="hand-score">—</span></h3>
+          <div class="hand" id="bj-dealer-hand" aria-live="polite"></div>
+        </div>
+        <div class="game-message" data-message="blackjack" role="status">Place your bet, then press DEAL.</div>
+        <div class="bj-zone">
+          <div class="hand" id="bj-player-hand" aria-live="polite"></div>
+          <h3>PLAYER <span id="bj-player-score" class="hand-score">—</span></h3>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="chip-row" id="bj-chips" role="group" aria-label="Chip denominations"></div>
+        <div class="btn-row">
+          <div class="field" style="flex:1;min-width:140px"><label for="bj-bet-input">Bet amount</label><input
+              id="bj-bet-input" type="number" min="10" max="5000" step="10" value="100" inputmode="numeric" /></div>
+          <button class="btn" id="bj-max" type="button">MAX</button>
+          <button class="btn" id="bj-clear-bet" type="button">CLEAR</button>
+        </div>
+        <div class="bj-actions">
+          <button class="btn btn-yallo" id="bj-deal" type="button">DEAL</button>
+          <button class="btn" id="bj-hit" type="button" disabled>HIT</button>
+          <button class="btn" id="bj-stand" type="button" disabled>STAND</button>
+          <button class="btn" id="bj-double" type="button" disabled>DOUBLE</button>
+          <button class="btn btn-ghost" id="bj-new-round" type="button" disabled>NEW ROUND</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="roulette" aria-label="Roulette table">
+      <div class="hud">
+        <div class="hud-box">
+          <div class="label">Balance</div>
+          <div class="value" data-balance>—</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">Total Bet</div>
+          <div class="value" data-bet="roulette">0 CHIPS</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">State</div>
+          <div class="value" id="roulette-state" style="font-size:.95rem">BETTING</div>
+        </div>
+      </div>
+      <div class="roulette-layout">
+        <div class="panel" style="text-align:center">
+          <div class="wheel-wrap" aria-hidden="true">
+            <div class="wheel" id="roulette-wheel"></div>
+            <div class="ball-track" id="roulette-ball-track">
+              <div class="ball"></div>
+            </div>
+            <div class="wheel-pointer">▼</div>
+            <div class="wheel-hub" id="roulette-hub">0</div>
+          </div>
+          <div class="game-message" data-message="roulette" role="status">Place chips on the board, then SPIN.</div>
+        </div>
+        <div class="panel bet-board">
+          <div class="chip-row" id="roulette-chips" role="group" aria-label="Chip denominations"></div>
+          <div class="field"><label for="roulette-bet-input">Chip size for next placement</label><input
+              id="roulette-bet-input" type="number" min="10" max="5000" step="10" value="50" inputmode="numeric" />
+          </div>
+          <strong style="color:var(--yallo-bright)">Numbers</strong>
+          <div class="number-grid" id="roulette-numbers" role="group" aria-label="Straight number bets"></div>
+          <strong style="color:var(--yallo-bright)">Inside bets</strong>
+          <div class="outside-row" id="roulette-inside-modes" role="group" aria-label="Inside bet type">
+            <button class="outside-btn" type="button" data-inside-mode="straight">Straight 35:1</button>
+            <button class="outside-btn" type="button" data-inside-mode="split">Split 17:1</button>
+            <button class="outside-btn" type="button" data-inside-mode="street">Street 11:1</button>
+            <button class="outside-btn" type="button" data-inside-mode="corner">Corner 8:1</button>
+            <button class="outside-btn" type="button" data-inside-mode="sixline">Six Line 5:1</button>
+          </div>
+          <p class="inside-hint" id="roulette-inside-hint" role="status">Tap a number for a Straight bet, or pick another inside bet above.</p>
+          <div class="btn-row">
+            <button class="btn" id="roulette-place-inside" type="button" disabled>PLACE INSIDE BET</button>
+            <button class="btn btn-ghost" id="roulette-clear-selection" type="button">CLEAR SELECTION</button>
+          </div>
+          <strong style="color:var(--yallo-bright)">Call bets / Racetrack</strong>
+          <div class="outside-row" id="roulette-call-bets" role="group" aria-label="French call bets">
+            <button class="outside-btn" type="button" data-call-bet="voisins">VOISINS DU ZERO · 9 chips</button>
+            <button class="outside-btn" type="button" data-call-bet="tiers">TIERS DU CYLINDRE · 6 chips</button>
+            <button class="outside-btn" type="button" data-call-bet="orphelins">ORPHELINS · 5 chips</button>
+          </div>
+          <div class="call-preview" id="roulette-call-preview" hidden></div>
+          <details class="howto">
+            <summary>How to play &amp; payouts</summary>
+            <ul>
+              <li><strong>Straight (35:1):</strong> bet on one number.</li>
+              <li><strong>Split (17:1):</strong> bet on two neighboring numbers.</li>
+              <li><strong>Street (11:1):</strong> bet on three numbers in one row.</li>
+              <li><strong>Corner (8:1):</strong> bet on four neighboring numbers.</li>
+              <li><strong>Six Line (5:1):</strong> bet on six numbers in two rows.</li>
+              <li><strong>Voisins du Zero (9 chips):</strong> a French call bet covering numbers around 0.</li>
+              <li><strong>Tiers du Cylindre (6 chips):</strong> a French call bet covering a section of the wheel.</li>
+              <li><strong>Orphelins (5 chips):</strong> a French call bet covering numbers outside the main Zero and Tiers sections.</li>
+              <li><strong>Outside (1:1 / 2:1):</strong> Red/Black, Odd/Even, Low/High pay 1:1; Dozens and Columns pay 2:1.</li>
+            </ul>
+          </details>
+          <strong style="color:var(--yallo-bright)">Outside bets</strong>
+          <div class="outside-row" id="roulette-outside">
+            <button class="outside-btn" type="button" data-bet-type="red">Red 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="black">Black 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="odd">Odd 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="even">Even 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="low">Low 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="high">High 1:1</button>
+            <button class="outside-btn" type="button" data-bet-type="dozen" data-bet-value="1">Dozen 1 (2:1)</button>
+            <button class="outside-btn" type="button" data-bet-type="dozen" data-bet-value="2">Dozen 2 (2:1)</button>
+            <button class="outside-btn" type="button" data-bet-type="dozen" data-bet-value="3">Dozen 3 (2:1)</button>
+            <button class="outside-btn" type="button" data-bet-type="column" data-bet-value="1">Col 1 (2:1)</button>
+            <button class="outside-btn" type="button" data-bet-type="column" data-bet-value="2">Col 2 (2:1)</button>
+            <button class="outside-btn" type="button" data-bet-type="column" data-bet-value="3">Col 3 (2:1)</button>
+          </div>
+          <div class="active-bets" id="roulette-active-bets">No bets placed.</div>
+          <div class="btn-row">
+            <button class="btn btn-yallo" id="roulette-spin" type="button">SPIN</button>
+            <button class="btn" id="roulette-clear" type="button">CLEAR BETS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="slots" aria-label="Slot machine">
+      <div class="hud">
+        <div class="hud-box">
+          <div class="label">Balance</div>
+          <div class="value" data-balance>—</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">Bet</div>
+          <div class="value" data-bet="slots">0 CHIPS</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">Last Win</div>
+          <div class="value" id="slots-last-win">—</div>
+        </div>
+      </div>
+      <div class="panel slot-cabinet">
+        <div class="table-label">★ yalloEN SEVENS ★</div>
+        <div class="big-win-banner" id="slots-banner" role="status"></div>
+        <div class="reels" aria-live="polite">
+          <div class="reel" id="slot-reel-0">7</div>
+          <div class="reel" id="slot-reel-1">⭐</div>
+          <div class="reel" id="slot-reel-2">🍒</div>
+        </div>
+        <div class="game-message" data-message="slots" role="status">Set your bet and pull the spin.</div>
+        <div class="chip-row" id="slots-chips" role="group" aria-label="Chip denominations"
+          style="justify-content:center"></div>
+        <div class="btn-row" style="justify-content:center">
+          <div class="field" style="min-width:140px"><label for="slots-bet-input">Bet amount</label><input
+              id="slots-bet-input" type="number" min="10" max="5000" step="10" value="50" inputmode="numeric" /></div>
+          <button class="btn btn-yallo" id="slots-spin" type="button"
+            style="min-width:160px;font-size:1.05rem">SPIN</button>
+        </div>
+        <h3>Paytable <span style="font-size:.75rem;color:var(--muted)">(triple pays ×bet)</span></h3>
+        <table class="paytable">
+          <tbody id="slots-paytable"></tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <section class="page" data-page="baccarat" aria-label="Baccarat table">
+      <div class="hud">
+        <div class="hud-box">
+          <div class="label">Balance</div>
+          <div class="value" data-balance>—</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">Bet</div>
+          <div class="value" data-bet="baccarat">0 CHIPS</div>
+        </div>
+        <div class="hud-box">
+          <div class="label">State</div>
+          <div class="value" id="bac-state" style="font-size:.95rem">BETTING</div>
+        </div>
+      </div>
+      <div class="felt-table bac-table" id="bac-table">
+        <div class="table-label">BACCARAT · PLAYER 1:1 · BANKER 0.95:1 · TIE 8:1 · PLAYER/BANKER PUSH ON TIE</div>
+        <div class="bac-zones">
+          <div class="bac-side">
+            <h3>PLAYER <span id="bac-player-score" class="hand-score">—</span></h3>
+            <div class="hand" id="bac-player-hand" aria-live="polite"></div>
+          </div>
+          <div class="bac-vs" aria-hidden="true">VS</div>
+          <div class="bac-side">
+            <h3>BANKER <span id="bac-banker-score" class="hand-score">—</span></h3>
+            <div class="hand" id="bac-banker-hand" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="game-message" data-message="baccarat" role="status">Pick a spot, set your bet, then press DEAL.
+        </div>
+        <div class="bac-spots" role="group" aria-label="Betting spots">
+          <button class="bac-spot" id="bac-spot-player" type="button" data-spot="player"><span
+              class="spot-name">PLAYER</span><span class="spot-odds">Pays 1:1</span></button>
+          <button class="bac-spot" id="bac-spot-banker" type="button" data-spot="banker"><span
+              class="spot-name">BANKER</span><span class="spot-odds">Pays 0.95:1</span></button>
+          <button class="bac-spot" id="bac-spot-tie" type="button" data-spot="tie"><span
+              class="spot-name">TIE</span><span class="spot-odds">Pays 8:1</span></button>
+        </div>
+        <div class="bac-road-wrap"><span>RECENT</span>
+          <div class="bac-road" id="bac-road" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="chip-row" id="bac-chips" role="group" aria-label="Chip denominations"></div>
+        <div class="btn-row">
+          <div class="field" style="flex:1;min-width:140px"><label for="bac-bet-input">Bet amount</label><input
+              id="bac-bet-input" type="number" min="10" max="5000" step="10" value="100" inputmode="numeric" /></div>
+          <button class="btn" id="bac-max" type="button">MAX</button>
+          <button class="btn" id="bac-clear-bet" type="button">CLEAR</button>
+        </div>
+        <div class="bac-actions">
+          <button class="btn btn-yallo" id="bac-deal" type="button">DEAL</button>
+          <button class="btn btn-ghost" id="bac-new-round" type="button" disabled>NEW ROUND</button>
+        </div>
+      </div>
+    </section>
+    <section class="page" data-page="history" aria-label="Game history">
+      <div class="panel">
+        <h2>Game History</h2>
+        <div class="filter-row">
+          <div class="field"><label for="history-game-filter">Game</label><select id="history-game-filter">
+              <option value="all">All games</option>
+              <option value="blackjack">Blackjack</option>
+              <option value="roulette">Roulette</option>
+              <option value="slots">Slots</option>
+              <option value="baccarat">Baccarat</option>
+            </select></div>
+          <div class="field"><label for="history-result-filter">Result</label><select id="history-result-filter">
+              <option value="all">All results</option>
+              <option value="win">Wins</option>
+              <option value="loss">Losses</option>
+              <option value="push">Pushes</option>
+            </select></div>
+          <div class="btn-row" style="align-items:flex-end"><button class="btn btn-danger" id="history-clear"
+              type="button">CLEAR HISTORY</button></div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Game</th>
+                <th style="text-align:right">Bet</th>
+                <th>Result</th>
+                <th style="text-align:right">Profit</th>
+                <th style="text-align:right">Balance</th>
+                <th>When</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="page" data-page="statistics" aria-label="Statistics">
+      <div class="panel">
+        <h2>Statistics</h2>
+        <div class="stat-grid" id="stats-grid"></div>
+      </div>
+    </section>
+
+    <section class="page" data-page="settings" aria-label="Settings">
+      <div class="panel">
+        <h2>Settings</h2>
+        <div class="filter-row">
+          <div class="field music-field"><label for="setting-music-volume">🔊 Music volume <span
+                id="music-volume-value">18%</span></label><input id="setting-music-volume" type="range" min="0"
+              max="100" step="1" value="18" aria-label="Background music volume" /></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Reset casino data</h2>
+        <p style="color:var(--muted)">Reset restores <strong>10,000 Virtual Chips</strong> and erases history,
+          statistics and settings.</p>
+        <div class="btn-row">
+          <button class="btn" id="settings-reset-balance" type="button">RESET BALANCE</button>
+          <button class="btn btn-danger" id="settings-reset-all" type="button">RESET ALL DATA</button>
+          <button class="btn btn-ghost" id="settings-switch-user" type="button">SWITCH USER</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2026 THE ROYAL DEALER All rights reserved.</footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

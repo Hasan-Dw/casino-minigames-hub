@@ -1,0 +1,55 @@
+/* Roulette: wheel, ball track, betting layout. */
+.roulette-layout { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 1.2rem; align-items: start; }
+.wheel-wrap { position: relative; width: 100%; aspect-ratio: 1; max-width: 340px; margin: 0 auto; }
+.wheel {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 6px solid var(--yallo);
+  background: conic-gradient(
+    #0a7a4e 0deg 9.7deg, #141414 9.7deg 19.5deg, #b3242a 19.5deg 29.2deg, #141414 29.2deg 39deg,
+    #b3242a 39deg 48.6deg, #141414 48.6deg 58.4deg, #b3242a 58.4deg 68deg, #141414 68deg 77.8deg,
+    #b3242a 77.8deg 87.6deg, #141414 87.6deg 97.3deg, #0a7a4e 97.3deg 107deg, #141414 107deg 116.8deg,
+    #b3242a 116.8deg 126.5deg, #141414 126.5deg 136.2deg, #b3242a 136.2deg 146deg, #141414 146deg 155.7deg,
+    #b3242a 155.7deg 165.4deg, #141414 165.4deg 175deg, #b3242a 175deg 184.8deg, #141414 184.8deg 194.6deg,
+    #b3242a 194.6deg 204.3deg, #141414 204.3deg 214deg, #b3242a 214deg 223.8deg, #141414 223.8deg 233.5deg,
+    #b3242a 233.5deg 243.2deg, #141414 243.2deg 253deg, #b3242a 253deg 262.7deg, #141414 262.7deg 272.4deg,
+    #b3242a 272.4deg 282.2deg, #141414 282.2deg 291.9deg, #b3242a 291.9deg 301.6deg, #141414 301.6deg 311.4deg,
+    #b3242a 311.4deg 321deg, #141414 321deg 330.8deg, #b3242a 330.8deg 340.5deg, #141414 340.5deg 350.3deg,
+    #0a7a4e 350.3deg 360deg
+  );
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.3);
+  transition: transform 4s cubic-bezier(0.12, 0.8, 0.08, 1);
+}
+.wheel-hub {
+  position: absolute; inset: 34%; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f7e08b, var(--yallo) 60%, #5e4711);
+  display: grid; place-items: center; color: #1a1405; font-weight: 800;
+  border: 3px solid #3a2c08; font-size: 1.1rem;
+}
+.ball-track { position: absolute; inset: -4px; border-radius: 50%; pointer-events: none; transition: transform 4s cubic-bezier(0.12, 0.8, 0.08, 1); }
+.ball { position: absolute; top: -7px; left: calc(50% - 7px); width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #c9c9c9 60%, #777); box-shadow: 0 0 10px rgba(255,255,255,0.8); }
+.wheel-pointer { position: absolute; top: -10px; left: calc(50% - 8px); color: var(--yallo-bright); font-size: 1.2rem; z-index: 2; }
+
+.bet-board { display: flex; flex-direction: column; gap: 0.7rem; }
+.number-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 0.35rem; }
+.num-btn { border-radius: 8px; padding: 0.55rem 0; font-weight: 800; cursor: pointer; border: 1px solid rgba(212,175,55,0.4); color: #fff; background: #1a1a1a; }
+.num-btn.red { background: #8e1f26; } .num-btn.black { background: #161616; } .num-btn.green { background: #0a7a4e; }
+.num-btn.selected { outline: 2px solid var(--yallo-bright); box-shadow: 0 0 12px rgba(212,175,55,0.7); }
+.num-btn.picked { outline: 2px dashed var(--yallo-bright); box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+.num-btn.preview { outline: 2px solid #8fe3b0; box-shadow: 0 0 12px rgba(143,227,176,0.5); }
+.num-btn.winner { outline: 3px solid var(--yallo-bright); box-shadow: 0 0 22px rgba(212,175,55,0.9); }
+.outside-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.outside-btn { flex: 1 1 100px; border-radius: 10px; padding: 0.55rem 0.4rem; cursor: pointer; font-weight: 700; border: 1px solid rgba(212,175,55,0.4); background: rgba(0,0,0,0.4); color: var(--cream); }
+.outside-btn.selected { background: rgba(212,175,55,0.25); border-color: var(--yallo-bright); color: var(--yallo-bright); }
+.active-bets { min-height: 2em; color: var(--muted); font-size: 0.9rem; }
+.inside-hint { color: var(--muted); font-size: 0.85rem; margin: 0; min-height: 1.4em; }
+.call-preview { border: 1px solid rgba(212,175,55,0.4); border-radius: 10px; padding: 0.7rem 0.9rem; background: rgba(0,0,0,0.35); display: flex; flex-direction: column; gap: 0.5rem; }
+.call-preview strong { color: var(--yallo-bright); }
+.call-numbers { color: var(--muted); font-size: 0.85rem; }
+.call-breakdown { margin: 0; padding-left: 1.2rem; color: var(--cream); font-size: 0.85rem; }
+.howto { border: 1px solid rgba(212,175,55,0.35); border-radius: 10px; padding: 0.6rem 0.9rem; }
+.howto summary { cursor: pointer; color: var(--yallo-bright); font-weight: 700; }
+.howto ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.88rem; }
+.howto li { margin: 0.25rem 0; }
+.howto li strong { color: var(--cream); }
+
+@media (max-width: 900px) { .roulette-layout { grid-template-columns: 1fr; } }

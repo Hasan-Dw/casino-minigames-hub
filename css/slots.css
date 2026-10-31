@@ -1,0 +1,16 @@
+
+.slot-cabinet { max-width: 560px; margin: 0 auto; text-align: center; }
+.reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin: 1rem 0; }
+.reel {
+  height: 150px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 3.4rem; background: linear-gradient(180deg, #f7f2e4, #d9cfae);
+  border: 2px solid var(--yallo); box-shadow: inset 0 10px 24px rgba(0,0,0,0.25);
+  color: #1a1405; overflow: hidden;
+}
+.reel.spinning { animation: reel-blur 0.18s linear infinite; }
+.reel.win-reel { box-shadow: 0 0 26px rgba(212,175,55,0.85), inset 0 10px 24px rgba(0,0,0,0.25); }
+.reel-seven { color: #a12020; font-weight: 900; font-family: var(--font-display); }
+.paytable { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.92rem; }
+.paytable td { padding: 0.4rem 0.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); }
+.paytable td:last-child { text-align: right; color: var(--yallo-bright); font-weight: 800; }
+.big-win-banner { font-family: var(--font-display); font-size: 2rem; color: var(--yallo-bright); text-shadow: 0 0 30px rgba(212,175,55,0.8); min-height: 2.4em; }
